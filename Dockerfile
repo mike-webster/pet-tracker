@@ -20,8 +20,6 @@ WORKDIR /pet-tracker
 
 COPY . .
 
-RUN gem install nokogiri -v '1.10.7' --source 'https://rubygems.org/'
-
 RUN bundle install
 
 EXPOSE 3000
