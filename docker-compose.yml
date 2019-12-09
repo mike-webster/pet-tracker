@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  db:
+    container_name: pet-tracker-db
+    restart: always
+    image: mysql:5.7
+    ports:
+      - 3309:3306
+    environment: 
+      MYSQL_ROOT_PASSWORD: pass
+    networks: 
+      - pet-net
+    command: --default-authentication-plugin=mysql_native_password
+  
+  app:
+    container_name: pet-tracker
+    build:
+      context: .
+    ports:
+      - 3009:3000
+    expose:
+      - 3000
+    depends_on:
+      - db
+    environment:
+      - RAILS_ENV=development
+      - DEV_SUBNET_RANGE=172.20.11.0/24
+      - HOST=0.0.0.0
+      - PORT=3000
+      - DB_HOST=db
+    command: >
+      bundle exec rails server
+
+networks:
+  pet-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.10.0/24
