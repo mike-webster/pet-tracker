@@ -1,0 +1,35 @@
+<style>
+  .content {
+      min-width: 400px;
+      max-width: 1400px;
+      padding: 20px 10px;
+      background-color: gray;
+      border-style: solid;
+      border-size: 5px;
+    }
+
+    .row {
+      padding: 10px 5px;
+    }
+  
+    .errors {
+      background-color: pink;
+      color: white;
+      border-color: red;
+    }
+</style>
+
+<div class="content">
+    <% unless @pets.present? %>
+      <p>No pets yet</p>
+    <% else %>
+      <% @pets.each do |p| %>
+        <div class="row">
+          <span>Name: <%= p.name %></span>
+          <span>Kind: <%= p.kind %></span>
+          <span>Breed: <%= p.breed %></span>
+          <span>Birthday: <%= p.birthday %></span>
+        </div>
+      <% end %>
+    <% end %>
+</div>
