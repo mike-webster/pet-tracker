@@ -7,6 +7,7 @@ class PetController < ApplicationController
   def create
     @pet = Pet.new(pet_params)
     if @pet.validate
+      @pet.save!
       redirect_to pet_path(@pet.id)
       return
     end
@@ -20,6 +21,11 @@ class PetController < ApplicationController
 
   def index
     @pets = Pet.all
+  end
+
+  def events
+    @pet = Pet.find_by(id: params[:id])
+    @events = @pet.events
   end
 
   private

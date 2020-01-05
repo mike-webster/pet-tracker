@@ -1,0 +1,19 @@
+<style>
+  .content {
+    min-width: 400px;
+    max-width: 1400px;
+    padding: 20px 10px;
+    background-color: gray;
+    border-style: solid;
+    border-size: 5px;
+  }
+</style>
+
+<div class="content">
+  <h2><%= @event.pet.name %></h2>
+  <span>Event: <%= @event.kind.titleize %></span>
+  <span>When: <%= @event.happened_at %></span>
+  <% unless @event.notes.blank? %>
+    <span>Notes: <%= @event.notes %></span>
+  <% end %>
+</div>

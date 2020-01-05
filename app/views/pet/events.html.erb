@@ -1,0 +1,37 @@
+<style>
+  .content {
+      min-width: 400px;
+      max-width: 1400px;
+      padding: 20px 10px;
+      background-color: gray;
+      border-style: solid;
+      border-size: 5px;
+    }
+
+    .row {
+      padding: 10px 5px;
+    }
+
+    .errors {
+      background-color: pink;
+      color: white;
+      border-color: red;
+    }
+</style>
+
+<div class="content">
+    <h2><%= @pet.name.titleize %>'s Events</h2>
+    <% unless @events.present? %>
+      <p>No events yet</p>
+    <% else %>
+      <% @events.each do |e| %>
+        <div class="row">
+          <span>Event: <%= e.kind.titleize %></span>
+          <span>When: <%= e.happened_at %></span>
+          <% unless e.notes.blank? %>
+            <span>Notes: <%= e.notes %></span>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+</div>
