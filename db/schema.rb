@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_025010) do
+ActiveRecord::Schema.define(version: 2020_01_05_173603) do
+
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "pet_id"
+    t.string "kind"
+    t.string "notes"
+    t.datetime "happened_at"
+    t.datetime "created_at"
+    t.index ["pet_id"], name: "fk_rails_7c3ed24c08"
+  end
 
   create_table "pets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -21,4 +30,5 @@ ActiveRecord::Schema.define(version: 2019_12_09_025010) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "events", "pets"
 end
