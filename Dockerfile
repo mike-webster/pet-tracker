@@ -20,7 +20,7 @@ WORKDIR /pet-tracker
 
 COPY . .
 
-RUN bundle install
+RUN bundle install --jobs=4
 
 EXPOSE 3000
-ENTRYPOINT ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+ENTRYPOINT ["./entrypoint.sh"]
