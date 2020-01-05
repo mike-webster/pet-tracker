@@ -1,0 +1,28 @@
+default: &default
+  token_public_key: |
+    -----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6tIpbOmmA+qOpM7upLC2
+    m9/Auj5HiKX5KLgbZ1wyZvzBmUGNQYF5fcq0O6+EjB23O9IAv11IKeUXrcE/a9lt
+    mOkK6VddodM126lx/wEYJMSGFhB0k8nSLKkw9WaSINnBJ2w0a7MAyp8IZZU7+pyE
+    LQSwcXMG6lFtGjvndco3bbXXHgX+Hq3ue6LCN6WfUTswVA3LKfWtViJvyrqunK11
+    9xtqUG6+sBOh4LgBhIDheo9KS8dfAR4DsieiUY2qPdYvgi0uJWLo1zv53QA8aZYe
+    UFBr44MyqT/g1pAZlCSPb8mF95o37Ft11vD7RTSJndVEyf3NP0f07ma0pRCDVsaA
+    1QIDAQAB
+    -----END PUBLIC KEY-----
+  auth_domain: 'localhost'
+  token_private_key: ENV['JWT_PRIVATE_KEY']
+
+development:
+  <<: *default
+
+uat:
+  <<: *default
+
+production:
+  <<: *default
+  auth_domain: "TODO:update-this"
+
+  token_public_key: |
+    -----BEGIN PUBLIC KEY-----
+    TODO: UPDATE
+    -----END PUBLIC KEY-----
