@@ -1,4 +1,8 @@
 class Event < ApplicationRecord
-    validates :name, :kind, :happened_at, :created_at, presence: true
-    validates :kind { in: ["pee", "poo", "meal", "treat", "nap_start", "nap_end"]}
+  EVENT_OPTIONS = %w(pee poo meal treat sleep_start sleep_end)
+
+  validates :kind, :happened_at, :created_at, presence: true
+  validates :kind, inclusion: { in: EVENT_OPTIONS}
+
+  belongs_to :pet
 end
