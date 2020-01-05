@@ -1,0 +1,33 @@
+<style>
+  .content {
+      min-width: 400px;
+      max-width: 1400px;
+      padding: 20px 10px;
+      background-color: gray;
+      border-style: solid;
+      border-size: 5px;
+    }
+
+    .row {
+      padding: 10px 5px;
+    }
+  
+    .errors {
+      background-color: pink;
+      color: white;
+      border-color: red;
+    }
+</style>
+
+<div class="content">
+    <% unless @users.present? %>
+      <p>No users yet</p>
+    <% else %>
+      <% @users.each do |u| %>
+        <div class="row">
+          <span>Name: <%= "#{u.first_name} #{u.last_name}" %></span>
+          <span>Email: <%= u.email %></span>
+        </div>
+      <% end %>
+    <% end %>
+</div>
