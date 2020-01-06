@@ -1,5 +1,5 @@
 default: &default
-  token_public_key: |
+  public_jwt_key: |
     -----BEGIN PUBLIC KEY-----
     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6tIpbOmmA+qOpM7upLC2
     m9/Auj5HiKX5KLgbZ1wyZvzBmUGNQYF5fcq0O6+EjB23O9IAv11IKeUXrcE/a9lt
@@ -10,7 +10,6 @@ default: &default
     1QIDAQAB
     -----END PUBLIC KEY-----
   auth_domain: 'localhost'
-  token_private_key: ENV['JWT_PRIVATE_KEY']
 
 development:
   <<: *default
@@ -22,7 +21,7 @@ production:
   <<: *default
   auth_domain: "TODO:update-this"
 
-  token_public_key: |
+  public_jwt_key: |
     -----BEGIN PUBLIC KEY-----
     TODO: UPDATE
     -----END PUBLIC KEY-----
