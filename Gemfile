@@ -9,6 +9,7 @@ gem "rack", ">= 2.0.8"
 # authentication
 gem 'jwt'
 gem 'openssl'
+gem 'bcrypt'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
