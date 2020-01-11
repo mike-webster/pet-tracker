@@ -4,9 +4,10 @@
 
 module JwtUtils
   ISSUER = "#{APP_CONFIG['auth_domain']}"
+  TOKEN_LIFE = 4.hours
 
   def self.encode(payload)
-    JWT.encode payload.merge(base_payload((DateTime.now.utc + 4.hours).to_i)), private_key, 'RS256'
+    JWT.encode payload.merge(base_payload((DateTime.now.utc + TOKEN_LIFE).to_i)), private_key, 'RS256'
   end
 
   def self.decode(token, verify = true, algorithm = 'RS256')
@@ -21,6 +22,10 @@ module JwtUtils
 
     # Remove properties we don't need to read downstream
     payload.except('orig_iat', 'exp', 'jti', 'iat', 'iss')
+  end
+
+  def self.get_default_payload(user_id)
+    base_payload(Time.now.utc + TOKEN_LIFE).merge(user_id: user_id)
   end
 
   private
