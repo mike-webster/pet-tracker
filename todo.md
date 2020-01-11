@@ -10,6 +10,7 @@
 - deploy to production
 - add pet to user
 - user dashboard
+- add application layout
 - allow filtering on events (date, kind)
 - better looking UI
 - charts?
