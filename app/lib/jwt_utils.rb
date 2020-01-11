@@ -1,6 +1,4 @@
 # TODO: 
-#  - fix indentation
-#  - rework so this isn't plagerized
 
 module JwtUtils
   ISSUER = "#{APP_CONFIG['auth_domain']}"
