@@ -1,7 +1,6 @@
 # TODO List
 
 ## Functionality
-- authentication
 - authorization
     - user can only view their own pets
     - admins can view other users
@@ -9,6 +8,7 @@
 - update production config values
 - deploy to production
 - add pet to user
+- update readme
 - user dashboard
 - add application layout
 - allow filtering on events (date, kind)
