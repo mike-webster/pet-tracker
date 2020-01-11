@@ -10,6 +10,7 @@ default: &default
     1QIDAQAB
     -----END PUBLIC KEY-----
   auth_domain: 'localhost'
+  auth_key: 'pet-tracker-auth'
 
 development:
   <<: *default
