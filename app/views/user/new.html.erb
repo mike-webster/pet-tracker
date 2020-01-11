@@ -22,6 +22,7 @@
 </style>
 <div class="content">
   <h2>New User</h2>
+  <p><%= @user.password %></p>
   <p>Errors<%= @user.errors.map { |m| m} %></p>
   <% if @user.present? && @user.errors.messages.any? %>
     <div class="errors">
@@ -46,8 +47,8 @@
       <%= form.text_field :email %>
     </div>
     <div class="row">
-      <%= form.label :pass_hash %>
-      <%= form.text_field :pass_hash %>
+      <%= form.label :password %>
+      <%= form.password_field :password %>
     </div>
     <div class="row">
       <%= form.submit %>  

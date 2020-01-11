@@ -28,13 +28,13 @@ services:
     volumes: 
       - .:/pet-tracker
     environment:
-      - RAILS_ENV=development
-      - DEV_SUBNET_RANGE=172.20.11.0/24
-      - HOST=0.0.0.0
-      - PORT=3000
-      - DB_HOST=db
-      - APP_NAME=pet-tracker
-      - DATABASE_URL=mysql2://root:pass@db
+      RAILS_ENV: "development"
+      DEV_SUBNET_RANGE: "172.20.11.0/24"
+      HOST: "0.0.0.0"
+      PORT: 3000
+      DB_HOST: "db"
+      APP_NAME: "pet-tracker"
+      DATABASE_URL: "mysql2://root:pass@db"
 
 networks:
   pet-net:

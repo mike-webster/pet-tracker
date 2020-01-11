@@ -11,7 +11,8 @@ class UserController < ApplicationController
         rescue StandardError => e
           Rails.logger.error(event: "cannot-persist-new-user", error: e, user: @user)
           @user.errors.add(:email, "email is associated with existing account")
-          render :new, status: 400
+          flash[:error] = "not sure what happened... #{e}"
+          redirect_to new_user_path
           return 
         end
 
@@ -35,6 +36,6 @@ class UserController < ApplicationController
     private
   
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :pass_hash)
+      params.require(:user).permit(:first_name, :last_name, :email, :password)
     end
 end
