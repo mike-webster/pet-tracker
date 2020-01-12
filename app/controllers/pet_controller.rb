@@ -1,4 +1,5 @@
 class PetController < ApplicationController
+  before_action :authorize_pet, only: %i[show]
   def new
     @pet = Pet.new
     @pet.birthday = Time.parse("2019-10-12")
@@ -20,7 +21,7 @@ class PetController < ApplicationController
   end
 
   def index
-    @pets = Pet.all
+    @pets = Pet.where(user_id: @current_user.id)
   end
 
   def events

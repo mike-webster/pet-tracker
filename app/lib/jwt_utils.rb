@@ -5,21 +5,22 @@ module JwtUtils
   TOKEN_LIFE = 4.hours
 
   def self.encode(payload)
-    JWT.encode payload.merge(base_payload((DateTime.now.utc + TOKEN_LIFE).to_i)), private_key, 'RS256'
+    data = payload.merge(base_payload((DateTime.now.utc + TOKEN_LIFE).to_i))
+    JWT.encode data, private_key, 'RS256'
   end
 
   def self.decode(token, verify = true, algorithm = 'RS256')
+    return if token.nil?
     jwt = JWT.decode token, public_key, verify, algorithm: algorithm
-    read_payload(jwt, verify)
+    read_payload(jwt)
   end
 
-  def self.read_payload(jwt, verify)
-    payload = jwt.first
+  def self.read_payload(payload)
     return nil if payload.nil?
-    return nil if verify && payload['iss'] != ISSUER
+    return nil if payload.first['iss'] != ISSUER
 
     # Remove properties we don't need to read downstream
-    payload.except('orig_iat', 'exp', 'jti', 'iat', 'iss')
+    payload.first.except('orig_iat', 'exp', 'jti', 'iat', 'iss')
   end
 
   def self.get_default_payload(user_id)

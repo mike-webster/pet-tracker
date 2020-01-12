@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :authorized
+  skip_before_action :authorized, only: %i[healthcheck login logout]
   def healthcheck
     render json: "{'message': 'ok'}", status: 200
   end
@@ -29,5 +31,61 @@ class ApplicationController < ActionController::Base
   def logout
     cookies.delete APP_CONFIG['auth_key'].to_sym
     redirect_to login_path
+  end
+
+  def current_user
+    token = cookies[APP_CONFIG['auth_key']]
+    return if token.nil?
+    payload = JwtUtils.decode(token)
+    return if payload.nil?
+    @current_user = User.find_by(id: payload["user_id"])
+  end
+
+  def logged_in?
+    !current_user.nil?
+  end
+
+  def authorized
+    redirect_to login_path unless logged_in?
+  end
+
+  def authorize_pet
+    if !logged_in?
+      redirect_to login_path 
+      return
+    end
+
+    pet_id = params[:id]
+    pet = Pet.find_by(id: pet_id)
+    if pet.nil?
+      redirect_to pet_index_path
+      return
+    end
+
+    unless pet.user.id == @current_user.id
+      redirect_to pet_index_path
+      return
+    end
+  end
+
+  def authorize_event
+    if !logged_in?
+      redirect_to login_path 
+      return
+    end
+
+    event_id = params[:id]
+    event = Event.find_by(id: event_id)
+    if event.present? && event.pet.user.id != @current_user.id
+      redirect_to pet_index_path
+      return
+    end
+    
+    pet_id = params[:pet_id]
+    pet = Pet.find_by(id: pet_id)
+    if pet.present? && pet.user.id != @current_user.id
+      redirect_to pet_index_path
+      return
+    end
   end
 end
