@@ -21,8 +21,5 @@ uat:
 production:
   <<: *default
   auth_domain: "TODO:update-this"
-
-  public_jwt_key: |
-    -----BEGIN PUBLIC KEY-----
-    TODO: UPDATE
-    -----END PUBLIC KEY-----
+  public_jwt_key: ENV['JWT_PUBLIC_KEY']
+  private_jwt_key: ENV['JWT_PRIVATE_KEY']
