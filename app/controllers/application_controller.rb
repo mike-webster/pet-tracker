@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   end
 
   def login
+    redirect_to pet_index_path if logged_in?
+
     if request.post?
       data = params.require(:user).permit(:email, :password)
 
