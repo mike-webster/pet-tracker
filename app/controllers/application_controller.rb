@@ -51,7 +51,6 @@ class ApplicationController < ActionController::Base
 
   def authorize_pet
     if !logged_in?
-      Rails.logger.error(event: "unauthorized", message: "not logged in")
       redirect_to login_path 
       return
     end
@@ -60,13 +59,11 @@ class ApplicationController < ActionController::Base
     pet = Pet.find_by(id: pet_id)
     if pet.nil?
       redirect_to pet_index_path
-      Rails.logger.error(event: "unauthorized", message: "pet doesnt exist")
       return
     end
 
     unless pet.user.id == @current_user.id
       redirect_to pet_index_path
-      Rails.logger.error(event: "unauthorized", message: "pet does not belong to user")
       return
     end
     
@@ -76,7 +73,6 @@ class ApplicationController < ActionController::Base
   def authorize_event
     if !logged_in?
       redirect_to login_path 
-      Rails.logger.error(event: "unauthorized", message: "not logged in")
       return
     end
 
@@ -84,7 +80,6 @@ class ApplicationController < ActionController::Base
     event = Event.find_by(id: event_id)
     if event.present? && event.pet.user.id != @current_user.id
       redirect_to pet_index_path
-      Rails.logger.error(event: "unauthorized", message: "event associated with pet that does not belong to user")
       return
     end
     
@@ -92,7 +87,6 @@ class ApplicationController < ActionController::Base
     pet = Pet.find_by(id: pet_id)
     if pet.present? && pet.user.id != @current_user.id
       redirect_to pet_index_path
-      Rails.logger.error(event: "unauthorized", message: "event - pet does not belong to user")
       return
     end
   end
