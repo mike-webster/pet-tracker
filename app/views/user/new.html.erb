@@ -1,7 +1,6 @@
 <div class="content">
   <h2>New User</h2>
   <p><%= @user.password %></p>
-  <p>Errors<%= @user.errors.map { |m| m} %></p>
   <% if @user.present? && @user.errors.messages.any? %>
     <div class="errors">
       <ul>

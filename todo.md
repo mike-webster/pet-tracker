@@ -2,7 +2,6 @@
 
 ## Functionality
 - update production config values
-- deploy to production
 - add pet to user
 - add rspec
 - bump test coverage
