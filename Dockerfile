@@ -18,6 +18,8 @@ RUN apk add --no-cache \
 
 WORKDIR /pet-tracker
 
+RUN rails assets:precompile
+
 COPY . .
 ENV APP_NAME=pet-tracker
 RUN bundle install --jobs=4
