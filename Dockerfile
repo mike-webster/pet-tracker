@@ -19,7 +19,7 @@ RUN apk add --no-cache \
 WORKDIR /pet-tracker
 
 COPY . .
-
+ENV APP_NAME=pet-tracker
 RUN bundle install --jobs=4
 
 EXPOSE 3000
