@@ -1,6 +1,5 @@
 <div class="content">
   <h2>New Pet</h2>
-  <p>Errors<%= @pet.errors.map { |m| m} %></p>
   <% if @pet.present? && @pet.errors.messages.any? %>
     <div class="errors">
       <ul>
