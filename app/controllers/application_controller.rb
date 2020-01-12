@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
         return
       end
   
+      @user = User.new(email: data[:email])
       flash.now[:error] = "login failed"
       render status: 401
       return
