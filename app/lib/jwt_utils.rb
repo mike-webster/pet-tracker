@@ -43,7 +43,7 @@ module JwtUtils
 
   def self.public_key
     return @public_rsa if @public_rsa
-    @public_rsa = OpenSSL::PKey::RSA.new(APP_CONFIG['public_jwt_key'])
+    @public_rsa = OpenSSL::PKey::RSA.new(ENV['JWT_PUBLIC_KEY'])
   end
 
   def self.private_key
