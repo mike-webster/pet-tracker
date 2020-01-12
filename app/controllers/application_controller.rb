@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authorized
   skip_before_action :authorized, only: %i[healthcheck login logout]
   def healthcheck
-    render json: "{'message': 'ok'}", status: 200
+    render json: "{'message': 'ok', 'config':'#{APP_CONFIG}'}", status: 200
   end
 
   def login
