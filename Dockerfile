@@ -18,11 +18,10 @@ RUN apk add --no-cache \
 
 WORKDIR /pet-tracker
 
-RUN bundle exec rake assets:precompile
-
-COPY . .
 ENV APP_NAME=pet-tracker
 RUN bundle install --jobs=4
+RUN bundle exec rake assets:precompile
+COPY . .
 
 EXPOSE 3000
 ENTRYPOINT ["./entrypoint.sh"]
