@@ -20,6 +20,6 @@ uat:
 
 production:
   <<: *default
-  auth_domain: "TODO:update-this"
-  public_jwt_key: ENV['JWT_PUBLIC_KEY']
-  private_jwt_key: ENV['JWT_PRIVATE_KEY']
+  auth_domain: <%= ENV['AUTH_DOMAIN'] %>
+  public_jwt_key: <%= ENV['JWT_PUBLIC_KEY'] %>
+  private_jwt_key: <%= ENV['JWT_PRIVATE_KEY'] %>
