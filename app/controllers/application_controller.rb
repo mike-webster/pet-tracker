@@ -66,8 +66,6 @@ class ApplicationController < ActionController::Base
       redirect_to pet_index_path
       return
     end
-    
-    Rails.logger.debug(event: "authorized_pet")
   end
 
   def authorize_event
