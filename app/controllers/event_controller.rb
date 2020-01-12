@@ -1,5 +1,6 @@
 class EventController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
+  before_action :authorize_event, only: %i[show]
 
   def create
     @event = Event.new(event_params)
