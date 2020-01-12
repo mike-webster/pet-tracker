@@ -23,4 +23,4 @@ ENV APP_NAME=pet-tracker
 RUN bundle install --jobs=4
 
 EXPOSE 3000
-ENTRYPOINT  ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+ENTRYPOINT ["./entrypoint.sh"]
