@@ -1,5 +1,8 @@
 FROM ruby:2.5.5-alpine
 
+WORKDIR /pet-tracker
+ENV APP_NAME=pet-tracker
+
 RUN apk update && apk add --no-cache \
   bash \
   less \
@@ -16,12 +19,10 @@ RUN apk add --no-cache \
   libxslt-dev \
   yarn
 
-WORKDIR /pet-tracker
 
-ENV APP_NAME=pet-tracker
+COPY . .
 RUN bundle install --jobs=4
 RUN bundle exec rake assets:precompile
-COPY . .
 
 EXPOSE 3000
 ENTRYPOINT ["./entrypoint.sh"]
