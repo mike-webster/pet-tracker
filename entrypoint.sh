@@ -5,7 +5,7 @@ echo 'waiting for db'
 sleep 10
 
 echo 'database init'
-rake db:create db:migrate
+# rake db:create db:migrate
 
 echo 'starting app'
 bundle exec puma -C "config/puma.rb"
