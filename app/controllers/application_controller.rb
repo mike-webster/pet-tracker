@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   end
 
   def login
+    redirect_to pet_index_path if logged_in?
+
     if request.post?
       data = params.require(:user).permit(:email, :password)
 
@@ -19,6 +21,7 @@ class ApplicationController < ActionController::Base
         return
       end
   
+      @user = User.new(email: data[:email])
       flash.now[:error] = "login failed"
       render status: 401
       return
@@ -87,5 +90,9 @@ class ApplicationController < ActionController::Base
       redirect_to pet_index_path
       return
     end
+  end
+
+  def render_404
+    render json: '{"msg":"record not found"}', status: 404
   end
 end

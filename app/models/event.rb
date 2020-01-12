@@ -5,4 +5,6 @@ class Event < ApplicationRecord
   validates :kind, inclusion: { in: EVENT_OPTIONS}
 
   belongs_to :pet
+
+  scope :for_user, -> (user_id) { joins(:pet).where("pets.user_id = ?", user_id)}
 end
