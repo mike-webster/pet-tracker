@@ -1,13 +1,11 @@
 # TODO List
 
 ## Functionality
-- authorization
-    - user can only view their own pets
-    - admins can view other users
-    - user cannot view event belonging to another user's pet
 - update production config values
 - deploy to production
 - add pet to user
+- add rspec
+- bump test coverage
 - update readme
 - user dashboard
 - add application layout
@@ -15,3 +13,5 @@
 - better looking UI
 - charts?
 - password reset
+- add roles
+    - add admin functionality
