@@ -91,4 +91,8 @@ class ApplicationController < ActionController::Base
       return
     end
   end
+
+  def render_404
+    render json: '{"msg":"record not found"}', status: 404
+  end
 end

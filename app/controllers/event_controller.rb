@@ -21,6 +21,7 @@ class EventController < ApplicationController
 
   def show
     @event = Event.find_by(id: params[:id])
+    render_404 if @event.nil?
   end
 
   def index
