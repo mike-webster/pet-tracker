@@ -1,15 +1,7 @@
 <div class="content">
   <h2>New User</h2>
   <p><%= @user.password %></p>
-  <% if @user.present? && @user.errors.messages.any? %>
-    <div class="errors">
-      <ul>
-        <% @user.errors.messages.each do |msg| %>
-          <li><b><%= msg[0] %></b>: <%= msg[1] %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'flash_errors', model: @user %>
   <%= form_with(model: @user, local: true, url: "/user", method: "post") do |form| %>
     <div class="row">
       <%= form.label :first_name %>

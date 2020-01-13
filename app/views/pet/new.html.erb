@@ -1,14 +1,6 @@
 <div class="content">
   <h2>New Pet</h2>
-  <% if @pet.present? && @pet.errors.messages.any? %>
-    <div class="errors">
-      <ul>
-        <% @pet.errors.messages.each do |msg| %>
-          <li><b><%= msg[0] %></b>: <%= msg[1] %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'flash_errors', model: @pet %>
   <%= form_with(model: @pet, local: true, url: "/pet", method: "post") do |form| %>
     <div class="row">
       <%= form.label :name %>
