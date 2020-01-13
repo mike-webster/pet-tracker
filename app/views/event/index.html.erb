@@ -6,7 +6,7 @@
         <div class="row">
           <span>Pet Name: <%= e.pet.name.titleize %></span>
           <span>Event: <%= e.kind.titleize %></span>
-          <span>When: <%= e.happened_at %></span>
+          <span>When: <%= show_local_time(e.happened_at) %></span>
         </div>
       <% end %>
     <% end %>
