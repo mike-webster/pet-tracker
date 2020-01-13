@@ -1,7 +1,7 @@
 <div class="content">
   <h2><%= @event.pet.name %></h2>
   <span>Event: <%= @event.kind.titleize %></span>
-  <span>When: <%= @event.happened_at %></span>
+  <span>When: <%= show_local_time(@event.happened_at) %></span>
   <% unless @event.notes.blank? %>
     <span>Notes: <%= @event.notes %></span>
   <% end %>
