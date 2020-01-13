@@ -1,6 +1,7 @@
 # TODO List
 
 ## Functionality
+- add user timezone for adjusting displays
 - update production config values
 - add pet to user
 - add rspec

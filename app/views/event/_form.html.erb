@@ -1,0 +1,18 @@
+<%= form_with(model: event, local: true, url: "/event", method: "post") do |form| %>
+    <%= form.hidden_field :pet_id, id:"pet_id" %>
+    <div class="row">
+      <%= form.label :kind %>
+      <%= select_tag(:kind, options_for_select(Event::EVENT_OPTIONS), name: "event[kind]") %>
+    </div>
+    <div class="row">
+      <%= form.label :notes %>
+      <%= form.text_field :notes %>
+    </div>
+    <div class="row">
+      <%= form.label :happened_at %>
+      <%= form.datetime_select :happened_at %>
+    </div>
+    <div class="row">
+      <%= form.submit %>  
+    </div>
+  <% end %> 
