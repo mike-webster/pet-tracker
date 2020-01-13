@@ -1,0 +1,27 @@
+<%= form_with(model: user, local: true, url: "/user", method: method) do |form| %>
+    <div class="row">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name %>
+    </div>
+    <div class="row">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name %>
+    </div>
+    <div class="row">
+      <%= form.label :email %>
+      <%= form.text_field :email %>
+    </div>
+    <div class="row">
+      <%= form.label :timezone %>
+      <%= select_tag(:timezone, options_for_select(["Select timezone"].concat(@timezones), user.timezone)) %>
+    </div>
+    <% if show_password %>
+      <div class="row">
+        <%= form.label :password %>
+        <%= form.password_field :password %>
+      </div>
+    <% end %>
+    <div class="row">
+      <%= form.submit %>  
+    </div>
+  <% end %> 

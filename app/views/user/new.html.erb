@@ -1,26 +1,5 @@
 <div class="content">
   <h2>New User</h2>
-  <p><%= @user.password %></p>
   <%= render 'flash_errors', model: @user %>
-  <%= form_with(model: @user, local: true, url: "/user", method: "post") do |form| %>
-    <div class="row">
-      <%= form.label :first_name %>
-      <%= form.text_field :first_name %>
-    </div>
-    <div class="row">
-      <%= form.label :last_name %>
-      <%= form.text_field :last_name %>
-    </div>
-    <div class="row">
-      <%= form.label :email %>
-      <%= form.text_field :email %>
-    </div>
-    <div class="row">
-      <%= form.label :password %>
-      <%= form.password_field :password %>
-    </div>
-    <div class="row">
-      <%= form.submit %>  
-    </div>
-  <% end %> 
+  <%= render 'form', user: @user, method: "post", show_password: true %>
 <div>

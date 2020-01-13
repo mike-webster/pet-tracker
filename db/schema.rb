@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_11_213606) do
+ActiveRecord::Schema.define(version: 2020_01_13_054330) do
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "pet_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_01_11_213606) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "timezone"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

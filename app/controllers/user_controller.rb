@@ -2,6 +2,7 @@ class UserController < ApplicationController
   skip_before_action :authorized, only: %i[new create]
     def new
       @user = User.new
+      @timezones = timezones
     end
   
     def create
@@ -22,8 +23,24 @@ class UserController < ApplicationController
         redirect_to new_pet_path
         return
       end
-  
+      
+      @timezones = timezones
       render :new, status: 400
+    end
+
+    def edit
+      @user = @current_user
+      @timezones = timezones
+    end
+
+    def update
+      if @current_user.update_attributes(user_params)
+        redirect_to new_pet_path
+        return
+      end
+
+      @timezones = timezones
+      render :edit, status: 400
     end
   
     def show
@@ -37,6 +54,10 @@ class UserController < ApplicationController
     private
   
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :timezone)
+    end
+
+    def timezones
+      ActiveSupport::TimeZone::MAPPING.select{|k,v| v.include? "America"}.map{|tz| tz.last}
     end
 end
