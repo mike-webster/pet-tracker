@@ -60,4 +60,7 @@ class UserController < ApplicationController
     def timezones
       ActiveSupport::TimeZone::MAPPING.select{|k,v| v.include? "America"}.map{|tz| tz.last}
     end
+  def dashboard
+    
+  end
 end
