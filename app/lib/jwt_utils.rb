@@ -11,8 +11,13 @@ module JwtUtils
 
   def self.decode(token, verify = true, algorithm = 'RS256')
     return if token.nil?
-    jwt = JWT.decode token, public_key, verify, algorithm: algorithm
-    read_payload(jwt)
+    begin
+      jwt = JWT.decode token, public_key, verify, algorithm: algorithm
+      return read_payload(jwt)
+    rescue StandardError => e
+      Rails.logger.error(event: "jwt_decode_error", error: e, token: token)
+    end
+    nil
   end
 
   def self.read_payload(payload)
