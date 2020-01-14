@@ -18,7 +18,7 @@
 
   <%= select_tag(:pet, options_for_select([["Select pet", nil]].concat(@pets.map{|p| [p.name, p.id]})), id: "pet-select") %>
 
-  <%= render 'form', event: @event %>
+  <%= render 'form', event: @event, method: "post" %>
 
   <hr>
 

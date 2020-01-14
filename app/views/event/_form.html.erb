@@ -1,8 +1,8 @@
-<%= form_with(model: event, local: true, url: "/event", method: "post") do |form| %>
+<%= form_with(model: event, local: true, url: "/event", method: method) do |form| %>
     <%= form.hidden_field :pet_id, id:"pet_id" %>
     <div class="row">
       <%= form.label :kind %>
-      <%= select_tag(:kind, options_for_select(Event::EVENT_OPTIONS), name: "event[kind]") %>
+      <%= select_tag(:kind, options_for_select(Event::EVENT_OPTIONS, event.kind), name: "event[kind]") %>
     </div>
     <div class="row">
       <%= form.label :notes %>
