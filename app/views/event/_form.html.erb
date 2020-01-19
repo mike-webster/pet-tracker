@@ -13,6 +13,7 @@
       <%= form.datetime_select :happened_at %>
     </div>
     <div class="row">
-      <%= form.submit %>  
+      <%= form.submit style: "display: none" %>  
+      <a class="btn" href="javascript:void(0);" onclick="$('input:submit').click();">save</a>
     </div>
   <% end %> 
