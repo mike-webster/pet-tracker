@@ -28,6 +28,7 @@ class PetController < ApplicationController
   def events
     @pet = Pet.find_by(id: params[:id])
     @events = @pet.events
+    render "events", layout: false
   end
 
   private
