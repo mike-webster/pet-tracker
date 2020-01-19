@@ -14,23 +14,89 @@
  *= require_self
  */
 
+ /*
+  ---- ---- ---- ---- ---- 
+  base
+  ---- ---- ---- ---- ----
+ */
+
+ :root {
+   --white: #FCFFFC;
+   --gray: #2D3A3A;
+   --black: #040F0F;
+   --dark-green: #248232;
+   --light-green: #2BA84A;
+   --error-pink: #e54b4b;
+ }
+
+ body {
+  color: var(--gray);
+  margin: 0;
+  font-family: 'Ubuntu';
+  font-size: 22px;
+ }
+
+ select {
+   font-size: 16px;
+   background-color: var(--light-green);
+   color: var(--black);
+   padding: 5px;
+ }
+
+ input {
+   font-size: 16px;
+ }
+
+ /*
+  ---- ---- ---- ---- ----
+  buttons
+  ---- ---- ---- ---- ----
+ */
+
+ .btn {
+   display: inline-block;
+   min-width: 100px;
+   padding: 10px 20px;
+   font-family: inherit;
+   font-size: 16px;
+   font-weight: 400;
+   text-decoration: none;
+   text-align: center;
+   text-transform: uppercase;
+   color: var(--white);
+   background-color: var(--light-green);
+   border-radius: 5px;
+ }
+
+ /*
+  ---- ---- ---- ---- ----
+  other
+  ---- ---- ---- ---- ----
+ */
+
  .content {
     min-width: 400px;
     max-width: 1400px;
     padding: 20px 10px;
-    background-color: gray;
-    border-style: solid;
+    background-color: var(--white);
+    border-style: solid solid none solid;
     border-width: 5px;
+    text-align: center;
+    overflow: auto;
   }
 
   .row {
     padding: 10px 5px;
   }
 
+  .column {
+    min-width: 50px;
+  }
+
   .errors {
-    background-color: pink;
-    color: red;
-    border-color: red;
+    background-color: var(--error-pink);
+    color: var(--error-pink);
+    border-color: var(--white);
     border-width: 5px;
     border-style: solid;
 
@@ -46,7 +112,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333333;
+    background-color: var(--gray);
   }
 
   li {
@@ -59,13 +125,13 @@
 
   li a {
     display: block;
-    color: white;
+    color: var(--white);
     text-align: center;
     padding: 16px;
     text-decoration: none;
   }
 
   li a:hover {
-    background-color: #111111;
+    background-color: var(--light-green);
   }
   
