@@ -1,24 +1,27 @@
-# README
+# Pet Tracker _(pet-tracker)_
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Track Pet Activities Throughout the Day
 
-Things you may want to cover:
+## Install
+```
+git clone https://github.com/mike-webster/pet-tracker.git
+docker-compose up --build
+```
 
-* Ruby version
+#### Dependencies
+- Ruby 2.5.5
+- Rails
+- MySql
 
-* System dependencies
+## Usage
+` docker-compose up --build`
 
-* Configuration
+## Maintainers
+- [Mike Webster](www.github.com/mike-webster)
 
-* Database creation
+## Thanks
+- To my dog Max, for making me want to do this.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Contributing
+- Pull requests are accepted, but must be approved by [Mike Webster](www.github.com/mike-webster)
+- [Issues](https://github.com/mike-webster/pet-tracker/issues) should be current, but might be in progress.
