@@ -21,6 +21,7 @@ docker-compose up --build
 
 ## Thanks
 - To my dog Max, for making me want to do this.
+![Max Splooting](http://www.mikewebster.tech/max_splooting.png)
 
 ## Contributing
 - Pull requests are accepted, but must be approved by [Mike Webster](www.github.com/mike-webster)
