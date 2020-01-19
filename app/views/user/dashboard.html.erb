@@ -1,1 +1,26 @@
-<h4>User Dashboard</h4>
+<script>
+  window.onload = function(){
+    // add onclick to each pet
+    document.querySelectorAll("[data-pet-item]").forEach((item) =>{
+        item.addEventListener("click", function(){
+            var panel = document.getElementById("pet-info");
+            var req = new XMLHttpRequest();
+            req.open( "GET", "/pet/" + item.attributes["data-id"].value + "/events", false ); // false for synchronous request
+            req.send( null );
+            
+            panel.innerHTML = req.responseText;
+            panel.style.display = "inline-block";
+        }, false)
+    });
+  }
+</script>
+
+<div class="content">
+    <h2><%= @current_user.first_name.titleize %>'s Dashboard</h4>
+    <div style="width:50%; float:left; text-align: center;">
+        <h4>Pet List</h4>
+        <%= render "pet_list", pets: @pets %>
+    </div>
+    <div id="pet-info" style="width:50%; float:left; display:none;">
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<% pets.each do |p| %>
+  <div>
+    <a href="javascript:void(0);" data-pet-item data-id="<%= p.id %>"><%= p.name %></a>
+  </div>
+<% end %>
