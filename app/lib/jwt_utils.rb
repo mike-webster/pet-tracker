@@ -48,11 +48,11 @@ module JwtUtils
 
   def self.public_key
     return @public_rsa if @public_rsa
-    @public_rsa = OpenSSL::PKey::RSA.new(ENV['JWT_PUBLIC_KEY'])
+    @public_rsa = OpenSSL::PKey::RSA.new(Rails.application.credentials.JWT_PUBLIC_KEY&.gsub("\\n","\n") || ENV['JWT_PUBLIC_KEY'])
   end
 
   def self.private_key
     return @private_rsa if @private_rsa
-    @private_rsa = OpenSSL::PKey::RSA.new(ENV['JWT_PRIVATE_KEY'])
+    @private_rsa = OpenSSL::PKey::RSA.new(Rails.application.credentials.JWT_PRIVATE_KEY&.gsub("\\n","\n") || ENV['JWT_PRIVATE_KEY'])
   end
 end
