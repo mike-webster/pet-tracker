@@ -1,23 +1,15 @@
-<script>
-  window.onload = function(){
-    function setId() {
-      sel = document.getElementById("pet-select");
-      hf = document.getElementById("pet_id");
-      hf.value = sel.value;
-    }
-
-    sel = document.getElementById("pet-select");
-    sel.addEventListener("change", setId, false);
-  }
-</script>
-
 <div class="content">
   <h2>New Event</h2>
 
   <%= render 'flash_errors', model: @event %>
 
-  <%= select_tag(:pet, options_for_select([["Select pet", nil]].concat(@pets.map{|p| [p.name, p.id]})), id: "pet-select") %>
-
+  <div class="container">
+    <div class="row">
+      <%= bootstrap_form_tag do |form| %>
+        <%= form.select :pet, options_for_select([["Select pet", nil]].concat(@pets.map{|p| [p.name, p.id]})), { }, { class: "pet-select"} %>
+      <% end %>
+    </div>
+  </div>
   <%= render 'form', event: @event %>
 
   <hr>
