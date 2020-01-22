@@ -9,9 +9,9 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *
  *= require_tree .
  *= require_self
+ *
  */
 
  /*
@@ -19,6 +19,9 @@
   base
   ---- ---- ---- ---- ----
  */
+
+@import "bootstrap";
+@import "rails_bootstrap_forms";
 
  :root {
    --white: #FCFFFC;
@@ -34,6 +37,8 @@
   margin: 0;
   font-family: 'Ubuntu';
   font-size: 22px;
+  display: inline-block;
+  width: 100%;
  }
 
  select {
@@ -68,6 +73,21 @@
    border-radius: 5px;
  }
 
+ .btn-secondary {
+  display: inline-block;
+  min-width: 100px;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--white);
+  background-color: var(--gray);
+  border-radius: 5px;
+ }
+
  /*
   ---- ---- ---- ---- ----
   other
@@ -83,10 +103,6 @@
     border-width: 5px;
     text-align: center;
     overflow: auto;
-  }
-
-  .row {
-    padding: 10px 5px;
   }
 
   .column {

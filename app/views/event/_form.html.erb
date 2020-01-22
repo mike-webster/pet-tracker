@@ -1,19 +1,26 @@
-<%= form_with(model: event, local: true, url: "/event", method: "post") do |form| %>
+<div class="container">
+  <%= bootstrap_form_with(model: event, local: true, url: "/event", method: "post") do |form| %>
     <%= form.hidden_field :pet_id, id:"pet_id" %>
     <div class="row">
-      <%= form.label :kind %>
-      <%= select_tag(:kind, options_for_select(Event::EVENT_OPTIONS), name: "event[kind]") %>
+      <div class="col-12">
+        <%= form.select :kind, options_for_select(Event::EVENT_OPTIONS), { }, { class: ""} %>
+      </div>
     </div>
     <div class="row">
-      <%= form.label :notes %>
-      <%= form.text_field :notes %>
+      <div class="col-12">
+        <%= form.text_field :notes %>
+      </div>
     </div>
     <div class="row">
-      <%= form.label :happened_at %>
-      <%= form.datetime_select :happened_at %>
+      <div class="col-12">
+        <%= form.datetime_select "local_time", default: Time.now.in_time_zone(@current_user.timezone), ampm:true %>
+      </div>
     </div>
     <div class="row">
-      <%= form.submit style: "display: none" %>  
-      <a class="btn" href="javascript:void(0);" onclick="$('input:submit').click();">save</a>
+      <div class="col-12">
+        <%= form.submit style: "display: none" %>  
+        <a class="btn" href="javascript:$('form').submit()">save</a>
+      </div>
     </div>
   <% end %> 
+</div>

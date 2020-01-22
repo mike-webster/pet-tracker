@@ -7,4 +7,6 @@ class Event < ApplicationRecord
   belongs_to :pet
 
   scope :for_user, -> (user_id) { joins(:pet).where("pets.user_id = ?", user_id)}
+
+  attr_accessor :local_time
 end
