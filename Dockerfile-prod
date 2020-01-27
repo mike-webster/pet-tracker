@@ -2,7 +2,10 @@ FROM ruby:2.5.5-alpine
 
 WORKDIR /pet-tracker
 ENV APP_NAME=pet-tracker
-ENV RAILS_ENV=development
+ENV RAILS_ENV=production
+
+# TODO: remove this -- it's for debugging the heroku build
+ENV SECRET_KEY_BASE=c0f34ca9f5fa341d04cf809c65da6f23d86eb05a80029c22afbf5b29918a19f7fa7d6931904fbe937c2504f73d0fd79ba61c82eecb60937bd273b497a33e52c3
 
 RUN apk update && apk add --no-cache \
   bash \
@@ -28,11 +31,9 @@ RUN apk add --no-cache \
 
 COPY . .
 
-RUN bundle install --jobs=4
+RUN bundle install --jobs=4 --without development test
 RUN bundle exec rake test:info
 RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 EXPOSE 3000
-# ENTRYPOINT ["./entrypoint.sh"]
-
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
