@@ -48,11 +48,25 @@ module JwtUtils
 
   def self.public_key
     return @public_rsa if @public_rsa
-    @public_rsa = OpenSSL::PKey::RSA.new(Rails.application.credentials.JWT_PUBLIC_KEY&.gsub("\\n","\n") || ENV['JWT_PUBLIC_KEY'])
+    key = ENV['JWT_PUBLIC_KEY']
+    begin
+      secret = Rails.application.credentials.JWT_PUBLIC_KEY
+      key = secret.gsub("\\n","\n")if secret.present?
+    rescue StandardError => err
+      Rails.logger.error(event: "jwt_public_key_error", error: err)
+    end
+    @public_rsa = OpenSSL::PKey::RSA.new(key)
   end
 
   def self.private_key
     return @private_rsa if @private_rsa
-    @private_rsa = OpenSSL::PKey::RSA.new(Rails.application.credentials.JWT_PRIVATE_KEY&.gsub("\\n","\n") || ENV['JWT_PRIVATE_KEY'])
+    key = ENV['JWT_PRIVATE_KEY']
+    begin
+      secret = Rails.application.credentials.JWT_PRIVATE_KEY
+      key = secret.gsub("\\n","\n")
+    rescue StandardError => err
+      Rails.logger.error(event: "jwt_private_key_error", error: err)
+    end
+    @private_rsa = OpenSSL::PKey::RSA.new(key)
   end
 end
