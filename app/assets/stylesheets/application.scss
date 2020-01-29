@@ -52,6 +52,10 @@
    font-size: 16px;
  }
 
+ div {
+   font-family: inherit;
+ }
+
  /*
   ---- ---- ---- ---- ----
   buttons
@@ -120,34 +124,64 @@
     padding: 5px;
   }
 
-  /* ---- ---- ----
-     Top Nav
-  */
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: var(--gray);
-  }
-
-  li {
+  .float-left {
     float: left;
   }
 
   .float-right {
     float: right;
   }
+  
 
-  li a {
+  /* ---- ---- ----
+     Top Nav
+  */
+
+  .top-nav {
+    background-color: var(--gray);
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .top-nav a, p {
     display: block;
     color: var(--white);
     text-align: center;
-    padding: 16px;
+    padding: 14px 16px;
     text-decoration: none;
+    font-size: 17px;
   }
 
-  li a:hover {
+  .nav-item {
+    display: block;
+    transition-duration: 0.5s;
+    color: var(--white);
+  }
+
+  .top-nav-dropdown {
+    overflow: hidden;
+  }
+
+  .top-nav a:hover, p:hover {
+    background-color: var(--light-green);
+    color: var(--white);
+  }
+
+  .top-nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--gray);
+    color: var(--white);
+    min-width: 160px;
+    z-index: 1;
+  }
+
+  .top-nav-dropdown:hover .top-nav-dropdown-content {
+    display: block;
+  }
+
+  .top-nav li a:hover {
     background-color: var(--light-green);
   }
-  
