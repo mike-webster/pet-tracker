@@ -1,6 +1,25 @@
-<ul>
-  <li><a href="<%= dashboard_path %>">Home</a></li>
-  <li><a href="<%= pet_index_path %>">Pets</a></li>
-  <li class="float-right"><a href="<%= logout_path %>">Logout</a></li>
-  <li class="float-right"><a href="<%= %>">Settings</a></li>
+<ul class="top-nav">
+  <div class="nav-item float-left">
+    <a href="<%= dashboard_path %>">Home</a>
+  </div>
+  <div class="top-nav-dropdown nav-item float-left">
+    <p>Pets</p>
+    <div class="top-nav-dropdown-content">
+      <a href="<%= new_pet_path %>">Add</a>
+      <a href="<%= pet_index_path %>">View All</a>
+    </div>
+  </div>
+  <div class="top-nav-dropdown nav-item float-left"> 
+    <p>Events</p>
+    <div class="top-nav-dropdown-content">
+      <a href="<%= new_event_path %>">Add</a>
+      <a href="<%= event_index_path %>">View All</a>
+    </div>
+  </div>
+  <div class="float-right nav-item">
+    <a href="<%= logout_path %>">Logout</a>
+  </div>
+  <div class="float-right nav-item">
+    <a href="<%= %>">Settings</a>
+  </div>
 </ul>
