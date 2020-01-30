@@ -15,3 +15,14 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+// this should cause an enter keypress to submit the form no matter which input has the focus
+$(document).ready(function(){
+    $("input").keypress(function(event) {
+        if (event.which == 13) {
+            event.preventDefault();
+            $("form").submit();
+        }
+      });
+});
+
