@@ -2,7 +2,7 @@
   <h2>login</h2>
   <div>
     <% flash.each do |type, msg| %>
-      <div class="errors">
+      <div class="alert alert-danger">
         <%= msg %>
       </div>
     <% end %>
@@ -10,7 +10,14 @@
   <div class="container text-center">
     <%= form_for @user, url: "/login", method: "post" do |form| %>
       <div class="row">
-        <div class="col-6 text-right">
+        <% if @user.errors[:email].any? %>
+          <div class="col-4 text-center error_explanations">
+            <p> <%= @user.errors[:email].first %> </p>
+          </div>
+        <% else %>
+          <div class="col-4"></div>
+        <% end %>
+        <div class="col-2 text-center">
           <%= form.label :email %>
         </div>
         <div class="col-6 text-left">
@@ -18,7 +25,14 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6 text-right">
+        <% if @user.errors[:password].any? %>
+          <div class="col-4 text-center error_explanations">
+            <p> <%= @user.errors[:password].first %> </p>
+          </div>
+        <% else %>
+          <div class="col-4"></div>
+        <% end %>
+        <div class="col-2 text-center">
           <%= form.label :password %>
         </div>
         <div class="col-6 text-left">

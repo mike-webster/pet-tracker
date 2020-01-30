@@ -1,27 +1,89 @@
+<% if user.errors.any? %>
+  <div class="error_explanations text-center row">
+    <p class="col-12">Please fix the errors and resubmit the form</p>
+  </div>
+<% end %>
 <%= form_with(model: user, local: true, url: "/user", method: method) do |form| %>
     <div class="row">
-      <%= form.label :first_name %>
-      <%= form.text_field :first_name %>
+      <% if user.errors[:first_name].present? %>
+        <div class="col-4 text-center error_explanations">
+          <p> <%= user.errors[:first_name].first %>  </p>
+        </div>
+      <% else %>
+        <div class="col-4"></div>
+      <% end %>
+      <div class="col-2 text-center">
+        <%= form.label :first_name %>
+      </div>
+      <div class="col-6 text-left">
+        <%= form.text_field :first_name %>
+      </div>
     </div>
     <div class="row">
-      <%= form.label :last_name %>
-      <%= form.text_field :last_name %>
+      <% if user.errors[:last_name].present? %>
+        <div class="col-4 text-center error_explanations">
+          <p> <%= user.errors[:last_name].first %>  </p>
+        </div>
+      <% else %>
+        <div class="col-4"></div>
+      <% end %>
+      <div class="col-2 text-center">
+        <%= form.label :last_name %>
+      </div>
+      <div class="col-6 text-left">
+        <%= form.text_field :last_name %>
+      </div>
     </div>
     <div class="row">
-      <%= form.label :email %>
-      <%= form.text_field :email %>
+      <% if user.errors[:email].present? %>
+        <div class="col-4 text-center error_explanations">
+          <p> <%= user.errors[:email].first %>  </p>
+        </div>
+      <% else %>
+        <div class="col-4"></div>
+      <% end %>
+      <div class="col-2 text-center">
+        <%= form.label :email %>
+      </div>
+      <div class="col-6 text-left">
+        <%= form.text_field :email %>
+      </div>
     </div>
     <div class="row">
-      <%= form.label :timezone %>
-      <%= form.select :timezone, options_for_select(["Select timezone"].concat(@timezones), user.timezone) %>
+      <% if user.errors[:timezone].present? %>
+        <div class="col-4 text-center error_explanations">
+          <p> <%= user.errors[:timezone].first %>  </p>
+        </div>
+      <% else %>
+        <div class="col-4"></div>
+      <% end %>
+      <div class="col-2 text-center">
+        <%= form.label :timezone %>
+      </div>
+      <div class="col-6 text-left">
+        <%= form.select :timezone, options_for_select(["Select timezone"].concat(@timezones), user.timezone) %>
+      </div>
     </div>
     <% if show_password %>
       <div class="row">
-        <%= form.label :password %>
-        <%= form.password_field :password %>
+        <% if user.errors[:password].present? %>
+          <div class="col-4 text-center error_explanations">
+            <p> <%= user.errors[:password].first %>  </p>
+          </div>
+        <% else %>
+          <div class="col-4"></div>
+        <% end %>
+        <div class="col-2 text-center">
+          <%= form.label :password %>
+        </div>
+        <div class="col-6 text-left">
+          <%= form.password_field :password %>
+        </div>
       </div>
     <% end %>
     <div class="row">
-      <%= form.submit %>  
+      <div class="col-6 text-center offset-3">
+        <a class="btn my-3" href="javascript:$('form').submit();" onclick="">Create Account</a>
+      </div>
     </div>
   <% end %> 
