@@ -1,5 +1,5 @@
 <% if model.present? && model.errors.messages.any? %>
-<div class="errors">
+<div class="alert alert-danger">
   <ul>
     <% model.errors.messages.each do |msg| %>
       <li><b><%= msg[0] %></b>: <%= msg[1] %></li>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/", to: "user#dashboard", as: "dashboard"
   get "/user/edit", to: "user#edit"
   put "/user", to: "user#update"
+  get  "/user", to:  redirect("/user/new")
 
   get "/healthcheck", to: "application#healthcheck"
   get "/pet/:id/events", to: "pet#events", as: "pet_events"

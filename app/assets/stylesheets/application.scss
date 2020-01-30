@@ -29,7 +29,7 @@
    --black: #040F0F;
    --dark-green: #248232;
    --light-green: #2BA84A;
-   --error-pink: #e54b4b;
+   --error-pink: #f8d7da;
  }
 
  body {
@@ -42,14 +42,13 @@
  }
 
  select {
-   font-size: 16px;
-   background-color: var(--light-green);
-   color: var(--black);
-   padding: 5px;
+  font-family: 'Ubuntu';
+  width: 100%;
  }
 
  input {
    font-size: 16px;
+   width: 100%;
  }
 
  div {
@@ -113,13 +112,21 @@
     min-width: 50px;
   }
 
-  .errors {
-    background-color: var(--error-pink);
-    color: var(--error-pink);
-    border-color: var(--white);
+  .field_with_errors {
+    border-color: var(--error-pink);
     border-width: 5px;
     border-style: solid;
 
+    margin: 10px 0;
+    padding: 5px;
+  }
+
+  .error_explanations {
+    font-size: 16px;
+    background-color: var(--error-pink);
+    border-color: var(--white);
+    border-style: solid;
+    border-width: 5px;
     margin: 10px 0;
     padding: 5px;
   }
@@ -145,7 +152,7 @@
     padding: 0;
   }
 
-  .top-nav a, p {
+  .top-nav a, .top-nav p {
     display: block;
     color: var(--white);
     text-align: center;
@@ -164,7 +171,7 @@
     overflow: hidden;
   }
 
-  .top-nav a:hover, p:hover {
+  .top-nav a:hover, .top-nav p:hover {
     background-color: var(--light-green);
     color: var(--white);
   }
