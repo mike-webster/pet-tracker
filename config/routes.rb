@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :pet, :event
   resources :user, only: [:new, :create]
   get "/", to: "user#dashboard", as: "dashboard"
+  get "/crash", to: "application#crash"
+  get "/exception", to: "application#except"
   get "/user/edit", to: "user#edit"
   put "/user", to: "user#update"
   get  "/user", to:  redirect("/user/new")
