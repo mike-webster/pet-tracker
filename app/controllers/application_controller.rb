@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
                          query_params: request.query_parameters,
                          backtrace: Rails.backtrace_cleaner.clean(err.backtrace))
 
-      
+      redirect_to err_internal_path
     end
   end
 
