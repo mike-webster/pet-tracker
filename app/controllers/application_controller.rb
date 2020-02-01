@@ -1,6 +1,31 @@
 class ApplicationController < ActionController::Base
   before_action :authorized
-  skip_before_action :authorized, only: %i[healthcheck login logout]
+  skip_before_action :authorized, only: %i[healthcheck login logout crash except]
+
+  unless Rails.application.config.consider_all_requests_local
+    rescue_from StandardError do |err|
+      Rails.logger.error(event: "unhandled_exception",
+                         message: err.message,
+                         original_url: request.original_url,
+                         remote_ip: request.remote_ip,
+                         method: request.request_method,
+                         path: request.fullpath,
+                         format: request.format.to_s,
+                         query_params: request.query_parameters,
+                         backtrace: Rails.backtrace_cleaner.clean(err.backtrace))
+
+      
+    end
+  end
+
+  def crash
+    render json:'{"err":"manual"}', status: 500
+  end
+
+  def except
+    raise "manually raised error"
+  end
+
   def healthcheck
     render json: "{'message': 'ok', 'config':'#{APP_CONFIG}'}", status: 200
   end
