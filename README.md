@@ -14,7 +14,10 @@ docker-compose up --build
 - MySql
 
 ## Usage
-` docker-compose up --build`
+`docker-compose up --build`
+
+#### Generate Test Data
+`rake backfill:populate_test_info`
 
 ## Maintainers
 - [Mike Webster](www.github.com/mike-webster)
