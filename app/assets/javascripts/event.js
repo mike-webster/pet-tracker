@@ -5,5 +5,7 @@ $(document).ready(function(){
         hf.value = sel.value;
     }
 
-    $("select[id=pet]")[0].addEventListener("change", setId, false);
+    if ($(".pet-select").length > 0) {
+        $("select[id=pet]")[0].addEventListener("change", setId, false);
+    }
 });

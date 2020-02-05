@@ -37,7 +37,7 @@
    --black: #040F0F;
    --dark-green: #248232;
    --light-green: #2BA84A;
-   --error-pink: #e54b4b;
+   --error-pink: #f8d7da;
  }
 
  body {
@@ -50,14 +50,17 @@
  }
 
  select {
-   font-size: 16px;
-   background-color: var(--light-green);
-   color: var(--black);
-   padding: 5px;
+  font-family: 'Ubuntu';
+  width: 100%;
  }
 
  input {
    font-size: 16px;
+   width: 100%;
+ }
+
+ div {
+   font-family: inherit;
  }
 
  /*
@@ -116,10 +119,8 @@
     min-width: 50px;
   }
 
-  .errors {
-    background-color: var(--error-pink);
-    color: var(--error-pink);
-    border-color: var(--white);
+  .field_with_errors {
+    border-color: var(--error-pink);
     border-width: 5px;
     border-style: solid;
 
@@ -127,36 +128,81 @@
     padding: 5px;
   }
 
+<<<<<<< HEAD
   /*
   ---- ---- ---- ---- ----
   Top Nav
   ---- ---- ---- ---- ----
-  */
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: var(--gray);
+=======
+  .error_explanations {
+    font-size: 16px;
+    background-color: var(--error-pink);
+    border-color: var(--white);
+    border-style: solid;
+    border-width: 5px;
+    margin: 10px 0;
+    padding: 5px;
   }
 
-  li {
+  .float-left {
     float: left;
   }
 
   .float-right {
     float: right;
   }
+  
 
-  li a {
+  /* ---- ---- ----
+     Top Nav
+>>>>>>> master
+  */
+
+  .top-nav {
+    background-color: var(--gray);
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .top-nav a, .top-nav p {
     display: block;
     color: var(--white);
     text-align: center;
-    padding: 16px;
+    padding: 14px 16px;
     text-decoration: none;
+    font-size: 17px;
   }
 
-  li a:hover {
+  .nav-item {
+    display: block;
+    transition-duration: 0.5s;
+    color: var(--white);
+  }
+
+  .top-nav-dropdown {
+    overflow: hidden;
+  }
+
+  .top-nav a:hover, .top-nav p:hover {
+    background-color: var(--light-green);
+    color: var(--white);
+  }
+
+  .top-nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--gray);
+    color: var(--white);
+    min-width: 160px;
+    z-index: 1;
+  }
+
+  .top-nav-dropdown:hover .top-nav-dropdown-content {
+    display: block;
+  }
+
+  .top-nav li a:hover {
     background-color: var(--light-green);
   }
-  
