@@ -42,6 +42,16 @@ class EventController < ApplicationController
   end
 
   def parse_local_time
-    Time.new(event_params["local_time(1i)"], event_params["local_time(2i)"], event_params["local_time(3i)"], event_params["local_time(4i)"], event_params["local_time(5i)"]).change(zone: @current_user.timezone)
+    offset = Time.now.in_time_zone(@current_user.timezone).utc_offset / -3600
+    year = event_params["local_time(1i)"]
+    month = event_params["local_time(2i)"]
+    date = event_params["local_time(3i)"]
+    hour = event_params["local_time(4i)"]
+    minute = event_params["local_time(5i)"]
+    wrong_in_utc = Time.strptime(
+      "#{year}-#{month}-#{date} #{hour}:#{minute}", 
+      "%Y-%m-%d %H:%M"
+    )
+    (wrong_in_utc + offset.hours).in_time_zone(@current_user.timezone)
   end
 end
