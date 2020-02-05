@@ -1,14 +1,14 @@
 <div class="content">
-    <h2><%= @pet.name.titleize %>'s Events</h2>
+    <h2><%= @pet.name.titleize %>'s Events (<%= Time.now.in_time_zone(@current_user.timezone).zone %>)</h2>
     <% unless @events.present? %>
       <p>No events yet</p>
     <% else %>
       <% @events.each do |e| %>
-        <div class="row">
-          <span>Event: <%= e.kind.titleize %></span>
-          <span>When: <%= show_local_time(e.happened_at) %></span>
+        <div class="row text-left">
+          <div class="col-3"><%= e.kind.titleize %>:</div>
+          <div class="col-9"><%= show_local_time(e.happened_at) %></div>
           <% unless e.notes.blank? %>
-            <span>Notes: <%= e.notes %></span>
+            <div class="col-9 offset-3">Notes: <%= e.notes %></span>
           <% end %>
         </div>
       <% end %>
