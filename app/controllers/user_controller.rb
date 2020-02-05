@@ -14,8 +14,9 @@ class UserController < ApplicationController
       rescue StandardError => e
         Rails.logger.error(event: "cannot-persist-new-user", error: e, user: @user)
         @user.errors.add(:email, "email is associated with existing account")
+        @timezones = timezones
 
-        redirect_to new_user_path
+        render "new"
         return 
       end
 
