@@ -1,7 +1,8 @@
 
 <div class="row">
-    <div>Pet: <%= event.pet.name %></div>
-    <div>Kind: <%= event.kind %></div>
-    <div>Happened: <%= show_local_time(event.happened_at) %></div>
-    <div>Notes: <%= event.notes %></div>
+    <div class="col">Kind: <%= event.kind %></div>
+    <div class="col">Happened: <%= show_local_time(event.happened_at) %></div>
+    <% if event.notes.present? %>
+        <div class="col">Notes: <%= event.notes %></div>
+    <% end %>
 </div>
