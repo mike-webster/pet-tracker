@@ -52,6 +52,6 @@ class EventController < ApplicationController
       "#{year}-#{month}-#{date} #{hour}:#{minute}", 
       "%Y-%m-%d %H:%M"
     )
-    (wrong_in_utc + offset.hours).in_time_zone(@current_user.timezone)
+    (wrong_in_utc + offset.hours).in_time_zone(@current_user.timezone) 
   end
 end
