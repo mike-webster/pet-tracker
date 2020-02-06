@@ -1,5 +1,5 @@
 class PTLogFormatter < Logger::Formatter
-  def call(severity, time, progname, msg)
-    %Q | {time: "#{datetime}\n", severity: "#{severity}\n", message: "#{msg} from #{progname}"}\n |
+  def call(severity, time, programName, message)
+    "#{time}, #{severity}: #{message} from #{programName}\n"
   end
 end
