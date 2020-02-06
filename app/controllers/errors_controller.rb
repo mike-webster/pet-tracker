@@ -1,6 +1,10 @@
 class ErrorsController < ApplicationController
   skip_before_action :authorized
 
+  def intentional_crash
+    raise "intentional error"
+  end
+
   def not_found
     render status: 404
   end

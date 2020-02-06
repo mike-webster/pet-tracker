@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/404', to: "errors#not_found", as: "err_not_found"
   get '/500', to: "errors#internal_error", as: "err_internal"
+  get '/crash', to: "errors#intentional_crash"
   
   get "/healthcheck", to: "application#healthcheck"
   get "/login", to: "application#login", as: "login"
