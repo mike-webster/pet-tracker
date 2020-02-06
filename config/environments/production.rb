@@ -85,6 +85,7 @@ Rails.application.configure do
     logger.formatter = proc do | severity, time, progname, msg | 
       "#{time}, #{severity}: #{msg}\n".to_json
     end
+    logger.auto_flushing = true
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
