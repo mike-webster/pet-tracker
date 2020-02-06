@@ -86,4 +86,6 @@ Rails.application.configure do
     "172.20.10.23",
     "172.20.10.24",
   ]
+
+  config.logger.formatter = PTLogger.new
 end
