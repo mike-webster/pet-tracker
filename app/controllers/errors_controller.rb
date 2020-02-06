@@ -2,6 +2,7 @@ class ErrorsController < ApplicationController
   skip_before_action :authorized
 
   def intentional_crash
+    Rails.logger.error(event: "intentional_error", why: "test controller action")
     raise "intentional error"
   end
 

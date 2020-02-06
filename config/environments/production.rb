@@ -83,10 +83,12 @@ Rails.application.configure do
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = proc do | severity, time, progname, msg | 
-      "#{time}, #{severity}: #{msg} from #{progname} \n".to_json
+      "#{time}, #{severity}: #{msg}\n".to_json
     end
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  config.lograge.enabled = true
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
