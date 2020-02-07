@@ -68,7 +68,7 @@ class UserController < ApplicationController
       {name: "pees", data: pees},
     ]
     @poopdata = [{name:"poops", data: poops}]
-    @peedata = [{name:"pees", daat: pees}]
+    @peedata = [{name:"pees", data: pees}]
   end
 
   private
