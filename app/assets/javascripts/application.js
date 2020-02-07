@@ -14,6 +14,8 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require turbolinks
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 
 // this should cause an enter keypress to submit the form no matter which input has the focus

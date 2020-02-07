@@ -10,17 +10,44 @@
             
             panel.innerHTML = req.responseText;
             panel.style.display = "inline-block";
+
+            $("[name='event[pet_id]']").val(item.attributes["data-id"].value);
+            $(".event_form").show();
         }, false)
     });
+
+    $('form').submit(function(){
+
+      // Maybe show a loading indicator...
+
+      $.post($(this).attr('action'), $(this).serialize(), function(res){
+          // Do something with the response `res`
+          console.log(res);
+          // Don't forget to hide the loading indicator!
+      });
+
+      location.reload();
+      return false; // prevent default action
+
+  });
   }
 </script>
 
-<div class="content">
+<div class="content row">
+  <div class="col-12">
     <h2><%= @current_user.first_name.titleize %>'s Dashboard</h4>
-    <div style="width:50%; float:left; text-align: center;">
-        <h4>Pet List</h4>
-        <%= render "pet_list", pets: @pets %>
+  </div>
+  <div class="col-6 text-center">
+    <div class="">
+      <h4>Pet List</h4>
+      <%= render "pet_list", pets: @pets %>
     </div>
-    <div id="pet-info" style="width:50%; float:left; display:none;">
+    <div class="event_form border p-2">
+      <%= render "event/form", event: Event.new %>
     </div>
+    <%= line_chart @data %>
+  </div>
+  <div id="pet-info" class="col-6" style="display:none;">
+  </div>
+
 </div>

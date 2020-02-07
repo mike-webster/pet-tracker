@@ -12,12 +12,12 @@ gem 'openssl'
 gem 'bcrypt'
 
 # because I'm lazy on front end
-# gem 'bootstrap-sass'
-# gem 'jquery-rails'
-# gem 'jquery-ui-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem "bootstrap_form", "~> 4.0"
+
+# pretty graphs
+gem 'chartkick'
 
 # I'm getting a weird issue in prod, saw something online pointing to the sassc gem.
 gem "sassc", '~> 2.1.0'
