@@ -45,6 +45,7 @@
     <div class="event_form border p-2">
       <%= render "event/form", event: Event.new %>
     </div>
+    <%= line_chart @data %>
   </div>
   <div id="pet-info" class="col-6" style="display:none;">
   </div>
