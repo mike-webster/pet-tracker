@@ -44,6 +44,8 @@
     $('.nav-link').click(function(e){
       e.preventDefault();
       $('.custom-panel').hide();
+      $('.nav-link').removeClass('active');
+      $('#' + this.id).addClass('active');
       var id = this.id.replace("-tab", "-body");
       $('#' + id).show();
     });
@@ -347,7 +349,7 @@
             <a class="nav-link" id="pees-tab" href="#pees-body">Pees</a>
           </li>
         </ul>
-        <div class="tab-content col-12" id="myTabContent">
+        <div class="tab-content col-12 border" id="myTabContent">
           <div class="custom-panel" id="potties-body">
             <div class="col-12">
               <%= line_chart @data %>
