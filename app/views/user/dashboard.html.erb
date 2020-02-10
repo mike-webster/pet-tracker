@@ -354,7 +354,7 @@
         <div class="tab-content col-12 border" id="myTabContent">
           <div class="custom-panel" id="potties-body">
             <div class="col-12">
-              <%= line_chart @data %>
+              <%= line_chart @data, xtitle: "Day", ytitle:"Time" %>
             </div>
           </div>
           <div class="custom-panel" id="poos-body" style="display:none;">
