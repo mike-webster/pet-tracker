@@ -329,15 +329,17 @@
 
   <%# Body %>
   <div class="row">
-    <div class="event_form col-6 text-center" style="display: none">
-      <div class=" p-2 mt-5 mb-5 border">
-        <div class="row text-center">
-          <h4 class="col-12">Add New Event</h4>
-          <hr class="col-12" />
+    <div class="col-6 text-center event_form" style="display: none">
+      <div class="row">
+        <div class="p-2 mt-5 mb-5 border event-panel">
+          <div class="row text-center">
+            <h4 class="col-12">Add New Event</h4>
+            <hr class="col-12" />
+          </div>
+          <%= render "event/form", event: Event.new %>
         </div>
-        <%= render "event/form", event: Event.new %>
       </div>
-      <div class="row charts mb-5">
+      <div class="row mb-5 charts">
         <ul class="nav nav-tabs col-12" id="chartTabs">
           <li class="nav-item">
             <a class="nav-link active" id="potties-tab" href="#potties-body">Potties</a>
@@ -368,7 +370,7 @@
         </div>
       </div>
     </div>
-    <div id="pet-info" class="col-6" style="display: none;">
+    <div class="col-6" id="pet-info" style="display: none;">
     </div>
   </div>
 </div>

@@ -1,5 +1,25 @@
-<div class="content">
+<div class="row">
+  <div class="col-12 text-center">
     <h2><%= @pet.name.titleize %>'s Events (<%= Time.now.in_time_zone(@current_user.timezone).zone %>)</h2>
+  </div>
+  <% unless @events.present? %>
+    <div class="col-12 text-center">
+      <p>No events</p>
+    </div>
+  <% else %>
+    <div class="col-12 text-center">
+      <% @events.each do |e| %>
+        <div class="row text-left">
+          <div class="col-2"><%= e.kind.titleize %>:</div>
+          <div class="col-10"><%= show_local_time(e.happened_at) %></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="">
+    
     <% unless @events.present? %>
       <p>No events yet</p>
     <% else %>
