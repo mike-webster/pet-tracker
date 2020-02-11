@@ -58,10 +58,12 @@ class UserController < ApplicationController
     poops = {}
     pees = {}
     Event.for_pet(@pets.first.id).poops.in_time_range((Time.now - 3.days), Time.now).each do |e|
-      poops.merge!({e.happened_at => ((e.happened_at.hour * 60) + e.happened_at.min)})
+      local_time  = e.happened_at.in_time_zone(@current_user.timezone)
+      poops.merge!({local_time => local_time.strftime("%H:%M")})
     end
     Event.for_pet(@pets.first.id).pees.in_time_range((Time.now - 3.days), Time.now).each do |e|
-      pees.merge!({e.happened_at => ((e.happened_at.hour * 60) + e.happened_at.min)})
+      local_time  = e.happened_at.in_time_zone(@current_user.timezone)
+      pees.merge!({local_time => local_time.strftime("%H:%M")})
     end
     @data = [
       {name: "poops", data: poops},
