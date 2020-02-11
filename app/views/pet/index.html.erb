@@ -1,18 +1,30 @@
-<h1 class="mt-5">Pet Information</h1>
-  <div class="row">
+<div class="container mt-4">
+		<div class="row">
+			<div class="col-12 mb-4">
+				<h3>Pets</h3>
+			</div>
+		</div>
+		<div class="row">
+
     <% unless @pets.present? %>
       <p>No pets yet</p>
     <% else %>
       <% @pets.each do |p| %>
-        <div class="col-md-4">
-          <h4><%= p.name %></h4>
-          <p>
-            <%= p.kind %><br>
+			<div class="col-sm-4 mb-3">
+				<div class="card shadow-sm">
+					<div class="card-body">
+						<h5 class="card-title"><%= p.name %></h5>
+						<p class="card-subtitle text-muted mb-4">
             <%= p.breed %><br>
-            Birthday: <%= p.birthday %>
-          </p>
-        </div>
+            </p>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+              <a href="<%= new_pet_path %>" class="btn btn-secondary">more info</a>
+            </div>
+					</div>
+				</div>
+      </div>
       <% end %>
     <% end %>
-  </div>
-<a href="<%= new_pet_path %>">Add new pet</a>
+
+		</div>
+	</div>

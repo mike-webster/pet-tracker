@@ -1,76 +1,82 @@
-  <h2>New Pet</h2>
-  <% if @pet.errors.any? %>
-    <div class="error_explanations text-center row">
-      <p class="col-12">Please fix the errors and resubmit the form</p>
-    </div>
-  <% end %>
-  <%= form_with(model: @pet, local: true, url: "/pet", method: "post") do |form| %>
-    <div class="row">
-      <% if @pet.errors[:name].any? %>
-        <div class="col-4 text-center error_explanations">
-          <p> <%= @pet.errors[:name].first %> </p>
-        </div>
-      <% else %>
-        <div class="col-4"></div>
-      <% end %>
+<div class="container mt-4">
+		<div class="row">
+			<div class="col-12 mb-4">
+				<h3>Add New Pet</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
 
-      <div class="col-2 text-center">
-        <%= form.label :name %>
+      <% if @pet.errors.any? %>
+      <div class="error_explanations text-center row">
+        <p class="col-12">Please fix the errors and resubmit the form</p>
       </div>
-      <div class="col-6 text-left">
-        <%= form.text_field :name %> 
-      </div>
-    </div>
-    <div class="row">
-      <% if @pet.errors[:kind].any? %>
-        <div class="col-4 text-center error_explanations">
-          <p> <%= @pet.errors[:kind].first %> </p>
+    <% end %>
+    <%= form_with(model: @pet, local: true, url: "/pet", method: "post") do |form| %>
+
+			<div class="row">
+        <% if @pet.errors[:name].any? %>
+          <div class="col-4 text-center error_explanations">
+            <p> <%= @pet.errors[:name].first %> </p>
+          </div>
+        <% else %>
+        <% end %>
+
+				<div class="col-8 mb-3">
+					<%= form.label :name %>
+          <%= form.text_field :name %>
         </div>
-      <% else %>
-        <div class="col-4"></div>
-      <% end %>
-      
-      <div class="col-2 text-center">
-        <%= form.label :kind %>
       </div>
-      <div class="col-6 text-left">
-        <%= form.text_field :kind %>
-      </div>
-    </div>
-    <div class="row">
-      <% if @pet.errors[:breed].any? %>
-        <div class="col-4 text-center error_explanations">
-          <p> <%= @pet.errors[:breed].first %> </p>
+
+
+      <div class="row">
+        <% if @pet.errors[:kind].any? %>
+          <div class="col-4 text-center error_explanations">
+            <p> <%= @pet.errors[:kind].first %> </p>
+          </div>
+        <% else %>
+        <% end %>
+
+        <div class="col-4 mb-3">
+          <%= form.label :kind %>
+					<%= form.text_field :kind %>
         </div>
-      <% else %>
-        <div class="col-4"></div>
-      <% end %>
-      
-      <div class="col-2 text-center">
-        <%= form.label :breed %>
-      </div>
-      <div class="col-6 text-left">
-        <%= form.text_field :breed %>
-      </div>
-    </div>
-    <div class="row">
-      <% if @pet.errors[:birthday].any? %>
-        <div class="col-4 text-center error_explanations">
-          <p> <%= @pet.errors[:birthday].first %> </p>
+
+				<% if @pet.errors[:breed].any? %>
+          <div class="col-4 text-center error_explanations">
+            <p> <%= @pet.errors[:breed].first %> </p>
+          </div>
+        <% else %>
+        <% end %>
+
+				<div class="col-4 mb-3">
+          <%= form.label :breed %>
+					<%= form.text_field :breed %>
         </div>
-      <% else %>
-        <div class="col-4"></div>
-      <% end %>
-      <div class="col-2 text-center">
-        <%=  form.label :birthday %>
+			</div>
+
+      <div class="row">
+        <% if @pet.errors[:birthday].any? %>
+          <div class="col-4 text-center error_explanations">
+            <p> <%= @pet.errors[:birthday].first %> </p>
+          </div>
+        <% else %>
+        <% end %>
+				<div class="col-4 mb-3">
+          <%= form.label :birthday %>
+					<%= form.date_field :birthday %>
+        </div>
+			</div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+              <a href="javascript:$('form').submit();" class="btn btn-secondary">add pet</a>
+            </div>
+        </div>
       </div>
-      <div class="col-6 text-center">
-        <%= form.date_field :birthday %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <a class="btn my-3" href="javascript:$('form').submit();" onclick="">CREATE PET</a>
-      </div>
-    </div>
-  <% end %> 
+    <% end %>
+
+			</div>
+		</div>
+	</div>
