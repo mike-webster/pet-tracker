@@ -12,12 +12,12 @@ gem 'openssl'
 gem 'bcrypt'
 
 # because I'm lazy on front end
-# gem 'bootstrap-sass'
-# gem 'jquery-rails'
-# gem 'jquery-ui-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem "bootstrap_form", "~> 4.0"
+
+# pretty graphs
+gem 'chartkick'
 
 # I'm getting a weird issue in prod, saw something online pointing to the sassc gem.
 gem "sassc", '~> 2.1.0'
@@ -70,6 +70,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # used in rake task
+  gem 'faker'
 end
 
 group :test do

@@ -14,8 +14,9 @@ class UserController < ApplicationController
       rescue StandardError => e
         Rails.logger.error(event: "cannot-persist-new-user", error: e, user: @user)
         @user.errors.add(:email, "email is associated with existing account")
+        @timezones = timezones
 
-        redirect_to new_user_path
+        render "new"
         return 
       end
 
@@ -54,6 +55,20 @@ class UserController < ApplicationController
 
   def dashboard
     @pets = @current_user.pets
+    poops = {}
+    pees = {}
+    Event.for_pet(@pets.first.id).poops.in_time_range((Time.now - 3.days), Time.now).each do |e|
+      poops.merge!({e.happened_at => ((e.happened_at.hour * 60) + e.happened_at.min)})
+    end
+    Event.for_pet(@pets.first.id).pees.in_time_range((Time.now - 3.days), Time.now).each do |e|
+      pees.merge!({e.happened_at => ((e.happened_at.hour * 60) + e.happened_at.min)})
+    end
+    @data = [
+      {name: "poops", data: poops},
+      {name: "pees", data: pees},
+    ]
+    @poopdata = [{name:"poops", data: poops}]
+    @peedata = [{name:"pees", data: pees}]
   end
 
   private

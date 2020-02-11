@@ -27,7 +27,7 @@ class PetController < ApplicationController
 
   def events
     @pet = Pet.find_by(id: params[:id])
-    @events = @pet.events
+    @events = @pet.events.sort_by(&:happened_at).reverse
     render "events", layout: false
   end
 
