@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
         token = JwtUtils.encode(payload)
         cookies[APP_CONFIG['auth_key']] = token
   
-        redirect_to new_pet_path
+        redirect_to dashboard_path
         return
       end
   
