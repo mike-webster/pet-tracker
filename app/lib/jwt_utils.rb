@@ -2,7 +2,7 @@
 
 module JwtUtils
   ISSUER = "#{APP_CONFIG['auth_domain']}"
-  TOKEN_LIFE = 4.hours
+  TOKEN_LIFE = 48.hours
 
   def self.encode(payload)
     data = payload.merge(base_payload((DateTime.now.utc + TOKEN_LIFE).to_i))
