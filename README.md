@@ -29,3 +29,6 @@ docker-compose up --build
 ## Contributing
 - Pull requests are accepted, but must be approved by [Mike Webster](www.github.com/mike-webster)
 - [Issues](https://github.com/mike-webster/pet-tracker/issues) should be current, but might be in progress.
+#### Contributors
+- [Mike Webster](https://github.com/mike-webster)
+- [Tony Opp](https://github.com/tony-opp)
