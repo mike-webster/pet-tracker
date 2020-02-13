@@ -1,18 +1,24 @@
 
 function updatePanel(petId) {
     var panel = $("#pet-info");
-    var req = new XMLHttpRequest();
-    req.open( "GET", "/pet/" + petId + "/events", false ); // false for synchronous request
-    req.send( null );
-    
-    panel.html(req.responseText);
+
+    $.ajax({
+        url: "/pet/" + petId + "/events",
+        type: "GET",
+        success: function(data, status, jqxhr) {
+            panel.html(data);
+        },
+        error: function(jqxhr, status, err) {
+            console.log(err);
+        }
+    });
 
     panel.show(); 
     $(".event_form").show();
     $(".charts").show();
-    };
+}
 
-    function setSelectedPet(petId) {
+function setSelectedPet(petId) {
     $("[name='event[pet_id]']").val(petId);
 }
 
