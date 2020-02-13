@@ -17,40 +17,60 @@
       $("[name='event[pet_id]']").val(petId);
     }
 
-    function setClickForTabs() {
-      //$('#chartTabs').tabs();
+    function submitEventForm() {      
+      var spinner = '<div class="spinner-grow" role="status"><span class="sr-only">Loading...</span></div>'
+      $('.event_form').prepend(spinner);
+
+      $.ajax({
+        url: $('form').attr('action'),
+        type: "POST",
+        data: $('form').serialize(),
+        success: function(data, status, jqxhr) {
+          console.log('submit success');
+          $('.spinner-grow').hide();
+          updatePanel($('#pets').value);
+        },
+        error: function(jqxhr, status, err) {
+          console.log(err);
+          $('.spinner-grow').hide();
+        }
+      });
+    }
+
+    function getChart(id, type) {
+      $.ajax({
+        url: "/pet/" + id + "/graph/" + type,
+        type: "GET",
+        success: function(data, status, jqxhr) {
+          //return data;
+          $('#pet-chart').html(data);
+        },
+        error: function(jqxhr, status, err) {
+          console.log("error: " + err);
+        }
+      });
     }
 
     $('#pets').on('change', function() {
       updatePanel(this.value);
       setSelectedPet(this.value);
+      getChart(this.value, "potties-html");
     });
 
-    $('form').submit(function(){
-
-      // Maybe show a loading indicator...
-
-      $.post($(this).attr('action'), $(this).serialize(), function(res){
-          // Do something with the response `res`
-          console.log(res);
-          // Don't forget to hide the loading indicator!
-      });
-
-      //location.reload();
-      return false; // prevent default action
-
-    });
-
-    $('.nav-link').click(function(e){
+    $('form').submit(function(e){
       e.preventDefault();
-      $('.custom-panel').hide();
-      $('.nav-link').removeClass('active');
-      $('#' + this.id).addClass('active');
-      var id = this.id.replace("-tab", "-body");
-      $('#' + id).show();
+      submitEventForm();
+      return false; // prevent default action
     });
 
-    setClickForTabs();
+    $('.nav-tab').click(function(e){
+      e.preventDefault();
+      $('.nav-tab').removeClass('active');
+      $('#' + this.id).addClass('active');
+
+      var type = this.id.replace("-tab", "-html");
+      getChart($("#pets").val(), type);
+    });
   });
 </script>
 
@@ -339,33 +359,15 @@
           <%= render "event/form", event: Event.new %>
         </div>
       </div>
-      <div class="row mb-5 charts">
+      <div class="row mb-5 charts" style="display: none;">
         <ul class="nav nav-tabs col-12" id="chartTabs">
-          <li class="nav-item">
-            <a class="nav-link active" id="potties-tab" href="#potties-body">Potties</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="poos-tab" href="#poos-body">Poos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="pees-tab" href="#pees-body">Pees</a>
-          </li>
+          <li class="nav-tab chart active" id="potties-tab">Potties</li>
+          <li class="nav-tab chart" id="poos-tab">Poos</li>
+          <li class="nav-tab chart" id="pees-tab">Pees</li>
         </ul>
         <div class="tab-content col-12 border" id="myTabContent">
-          <div class="custom-panel" id="potties-body">
-            <div class="col-12">
-              <%= line_chart @data, xtitle: "Day", ytitle:"Time", xmin: Time.now.to_date - 3.days, xmax: Time.now.to_date + 1.day %>
-            </div>
-          </div>
-          <div class="custom-panel" id="poos-body" style="display:none;">
-            <div class="col-12">
-              <%= line_chart @poopdata %>
-            </div>
-          </div>
-          <div class="custom-panel" id="pees-body" style="display:none;">
-            <div class="col-12">
-              <%= line_chart @peedata %>
-            </div>
+          <div id="chart-body" class="col-12">
+            <div id="pet-chart" class="pet-chart"></div>
           </div>
         </div>
       </div>
