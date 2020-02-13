@@ -16,6 +16,12 @@ class EventController < ApplicationController
     if @event.validate
       @event.save!
       Rails.logger.info(event: "created_event", object: @event)
+      if request.xhr?
+        # ajax request
+        render json: '{"status":"ok"}', status: 200
+        return
+      end
+
       redirect_to new_event_path
       return
     end
