@@ -1,14 +1,26 @@
-<div class="content">
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12 mb-4">
+      <h3>Pets</h3>
+    </div>
+  </div>
+  <div class="row">
     <% unless @pets.present? %>
       <p>No pets yet</p>
     <% else %>
       <% @pets.each do |p| %>
-        <div class="row">
-          <span>Name: <%= p.name %></span>
-          <span>Kind: <%= p.kind %></span>
-          <span>Breed: <%= p.breed %></span>
-          <span>Birthday: <%= p.birthday %></span>
+        <div class="col-sm-4 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"><%= p.name %></h5>
+              <p class="card-subtitle text-muted mb-4"><%= p.breed %><br></p>
+              <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <a href="<%= new_pet_path %>" class="btn btn-secondary">more info</a>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
     <% end %>
+  </div>
 </div>
