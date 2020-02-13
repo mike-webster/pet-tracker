@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   get  "/user", to:  redirect("/user/new")
 
   get "/pet/:id/events", to: "pet#events", as: "pet_events"
+  get "/pet/:id/graph/:type", to: "pet#graph", as:"pet_graph"
 end
