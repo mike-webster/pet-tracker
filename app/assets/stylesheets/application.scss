@@ -12,10 +12,18 @@
  *= require_tree .
  *= require_self
  *
+ *
+ *
+  ---- ---- ---- ---- ----
+  1. base
+  2. buttons
+  3. other
+  4. Top Nav
+  ---- ---- ---- ---- ----
  */
 
  /*
-  ---- ---- ---- ---- ---- 
+  ---- ---- ---- ---- ----
   base
   ---- ---- ---- ---- ----
  */
@@ -36,7 +44,7 @@
   color: var(--gray);
   margin: 0;
   font-family: 'Ubuntu';
-  font-size: 22px;
+  font-size: 1rem;
   display: inline-block;
   width: 100%;
  }
@@ -102,7 +110,6 @@
     max-width: 1400px;
     padding: 20px 10px;
     background-color: var(--white);
-    border-style: solid solid none solid;
     border-width: 5px;
     text-align: center;
     overflow: auto;

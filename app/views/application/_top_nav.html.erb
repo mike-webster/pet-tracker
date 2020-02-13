@@ -1,25 +1,27 @@
-<ul class="top-nav">
-  <div class="nav-item float-left">
-    <a href="<%= dashboard_path %>">Home</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="<%= dashboard_path %>">PetTracker</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+		
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="<%= dashboard_path %>">Home<span class="sr-only">(current)</span></a> 
+      </li>
+      <li class="nav-item dropdown"> 
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pets</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+          <a class="dropdown-item" href="<%= new_pet_path %>">Add Pet</a> 
+          <a class="dropdown-item" href="<%= pet_index_path %>">View All</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown"> 
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Events</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+          <a class="dropdown-item" href="<%= new_event_path %>">Add Event</a> 
+          <a class="dropdown-item" href="<%= event_index_path %>">View All</a>
+        </div>
+      </li>
+      <li class="nav-item"> <a class="nav-link" href="<%= %>">Settings</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="<%= logout_path %>">Logout</a> </li>
+    </ul>
   </div>
-  <div class="top-nav-dropdown nav-item float-left">
-    <p>Pets</p>
-    <div class="top-nav-dropdown-content">
-      <a href="<%= new_pet_path %>">Add</a>
-      <a href="<%= pet_index_path %>">View All</a>
-    </div>
-  </div>
-  <div class="top-nav-dropdown nav-item float-left"> 
-    <p>Events</p>
-    <div class="top-nav-dropdown-content">
-      <a href="<%= new_event_path %>">Add</a>
-      <a href="<%= event_index_path %>">View All</a>
-    </div>
-  </div>
-  <div class="float-right nav-item">
-    <a href="<%= logout_path %>">Logout</a>
-  </div>
-  <div class="float-right nav-item">
-    <a href="<%= %>">Settings</a>
-  </div>
-</ul>
+</nav>
