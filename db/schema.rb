@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_13_054330) do
+ActiveRecord::Schema.define(version: 2020_02_09_200658) do
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "pet_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_01_13_054330) do
     t.string "notes"
     t.datetime "happened_at"
     t.datetime "created_at"
+    t.boolean "is_bad"
     t.index ["pet_id"], name: "fk_rails_7c3ed24c08"
   end
 

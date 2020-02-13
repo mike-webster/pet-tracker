@@ -55,22 +55,38 @@ class UserController < ApplicationController
 
   def dashboard
     @pets = @current_user.pets
-    poops = {}
-    pees = {}
-    Event.for_pet(@pets.first.id).poops.in_time_range((Time.now - 3.days), Time.now).each do |e|
-      local_time  = e.happened_at.in_time_zone(@current_user.timezone)
-      poops.merge!({local_time => local_time.strftime("%H:%M")})
+    @chart_data = {}
+    @pets.each do |pet|
+      poops = {}
+      pees = {}
+      Event.for_pet(pet.id).poops.in_time_range((Time.now - 5.days), Time.now).each do |e|
+        local_time  = e.happened_at.in_time_zone(@current_user.timezone)
+        poops.merge!({local_time => local_time.strftime("%H:%M")})
+      end
+      Event.for_pet(@pets.first.id).pees.in_time_range((Time.now - 5.days), Time.now).each do |e|
+        local_time  = e.happened_at.in_time_zone(@current_user.timezone)
+        pees.merge!({local_time => local_time.strftime("%H:%M")})
+      end
+      pet_data = {
+        potties: [
+          { name: "poops", data: poops },
+          { name: "pees", data: pees },
+        ],
+        poops: [
+          { name: "poops", data: poops },
+        ],
+        pees: [
+          { name: "pees", data: pees },
+        ]
+      }
+      @chart_data[pet.id] = pet_data
+      # @data = [
+      #   {name: "poops", data: poops},
+      #   {name: "pees", data: pees},
+      # ]
+      # @poopdata = [{name:"poops", data: poops}]
+      # @peedata = [{name:"pees", data: pees}]
     end
-    Event.for_pet(@pets.first.id).pees.in_time_range((Time.now - 3.days), Time.now).each do |e|
-      local_time  = e.happened_at.in_time_zone(@current_user.timezone)
-      pees.merge!({local_time => local_time.strftime("%H:%M")})
-    end
-    @data = [
-      {name: "poops", data: poops},
-      {name: "pees", data: pees},
-    ]
-    @poopdata = [{name:"poops", data: poops}]
-    @peedata = [{name:"pees", data: pees}]
   end
 
   private

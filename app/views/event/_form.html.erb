@@ -1,26 +1,52 @@
-<div class="container">
-  <%= bootstrap_form_with(model: event, local: true, url: "/event", method: "post") do |form| %>
-    <%= form.hidden_field :pet_id, id:"pet_id" %>
-    <div class="row">
-      <div class="col-12">
-        <%= form.select :kind, options_for_select(Event::EVENT_OPTIONS), { }, { class: ""} %>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#event_local_time').datetimepicker({
+      defaultDate: "<%= Time.now.in_time_zone(@current_user.timezone) %>",
+      format: "MM-DD-YYYY hh:mm A"
+    });
+  });
+</script>  
+
+
+<%= bootstrap_form_with(model: event, local: true, url: "/event", method: "post") do |form| %>
+  <%= form.hidden_field :pet_id, id:"pet_id" %>
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <%= form.select :kind, options_for_select(Event::EVENT_OPTIONS), { }, { class: ""} %>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <%= form.text_field :notes %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-xs-3 col-md-4 col-lg-2">
+      Local Time:
+    </div>
+    <div class="col-xs-9 col-md-8 col-lg-4">
+      <div class="form-group">
+        <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" name="event[local_time]" id='event_local_time' />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+      </div>
+    </div>   
+    <div class="col-xs-3 col-md-4 col-lg-2">
+      <label class="form-check-label" for="event_is_bad">
+        Bad Event
+      </label>
+    </div>
+    <div class="col-xs-9 col-md-8 col-lg-4 text-left">
+      <div class="form-check">
+        <input class="form-check-input" name="event[is_bad]" type="checkbox" id="event_is_bad">
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <%= form.text_field :notes %>
-      </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= form.submit style: "display: none" %>  
+      <a class="btn" href="javascript:$('form').submit()">save</a>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <%= form.datetime_select "local_time", default: Time.now.in_time_zone(@current_user.timezone), ampm:true %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <%= form.submit style: "display: none" %>  
-        <a class="btn" href="javascript:$('form').submit()">save</a>
-      </div>
-    </div>
-  <% end %> 
-</div>
+  </div>
+<% end %> 

@@ -34,6 +34,7 @@
  :root {
    --white: #FCFFFC;
    --gray: #2D3A3A;
+   --light-gray: #2d3a3aa3;
    --black: #040F0F;
    --dark-green: #248232;
    --light-green: #2BA84A;
@@ -68,6 +69,24 @@
   buttons
   ---- ---- ---- ---- ----
  */
+
+ .nav-tab {
+  color: var(--light-green);
+  background-color: #dee2e6;
+  padding: 5px 10px;
+  margin: 0;
+  border: 1px solid #dee2e6;
+ }
+
+ .nav-tab.active, .nav-tab:hover {
+   background-color: var(--light-green);
+   color: #dee2e6;
+ }
+
+ .nav-tab:hover {
+   cursor: pointer;
+ }
+
 
  .btn {
    display: inline-block;
