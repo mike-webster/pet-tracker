@@ -1,3 +1,15 @@
+<style>
+  .bad_event {
+    color: var(--error-pink);
+    background-color: var(--gray);
+  }
+
+  .good_event {
+    color: var(--light-green);
+    background-color: var(--gray);
+  }
+</style>
+
 <div class="row">
   <div class="col-12 text-center">
     <h2><%= @pet.name.titleize %>'s Events (<%= Time.now.in_time_zone(@current_user.timezone).zone %>)</h2>
@@ -9,9 +21,9 @@
   <% else %>
     <div class="col-12 text-center">
       <% @events.each do |e| %>
-        <div class="row text-left">
-          <div class="col-2"><%= e.kind.titleize %>:</div>
-          <div class="col-10"><%= show_local_time(e.happened_at) %></div>
+        <div class="row <%= e.is_bad == true ? "bad_event" : "good_event" %>">
+          <div class="col-3"><%= e.kind.titleize %>:</div>
+          <div class="col-9"><%= show_local_time(e.happened_at) %></div>
         </div>
       <% end %>
     </div>

@@ -15,17 +15,14 @@
 
   <%# Body %>
   <div class="row">
-    <div class="col-6 text-center event_form" style="display: none">
-      <div class="row">
-        <div class="p-2 mt-5 mb-5 border event-panel">
-          <div class="row text-center">
-            <h4 class="col-12">Add New Event</h4>
-            <hr class="col-12" />
-          </div>
+    <div class="col-lg-8 text-center event_form" style="display: none">
+      <div class="row pb-5">
+        <div class="col event-panel text-center border pb-4">
+          <h4 class="border-bottom pb-2 mb-2">Add New Event</h4>
           <%= render "event/form", event: Event.new %>
         </div>
       </div>
-      <div class="row mb-5 charts" style="display: none;">
+      <div class="row mb-5 pb-5 charts" style="display: none;">
         <ul class="nav nav-tabs col-12" id="chartTabs">
           <li class="nav-tab chart active" id="potties-tab">Potties</li>
           <li class="nav-tab chart" id="poos-tab">Poos</li>
@@ -38,7 +35,7 @@
         </div>
       </div>
     </div>
-    <div class="col-6" id="pet-info" style="display: none;">
+    <div class="col-lg-4 text-center" id="pet-info" style="display: none;">
     </div>
   </div>
 </div>
